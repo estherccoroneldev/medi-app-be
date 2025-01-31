@@ -1,6 +1,8 @@
-import { express } from 'express';
-import {pkg} from 'body-parser';
-import {router} from './router/router.js';
+import express from 'express';
+import pkg from 'body-parser';
+import router from './routes/router.js';
+
+import db from './database/database.js'
 
 const app = express(); // create express app
 const { json, urlencoded } = pkg; // get json and urlencoded middleware
