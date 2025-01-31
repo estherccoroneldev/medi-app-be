@@ -1,11 +1,6 @@
 import mongoose from "mongoose";
 
-mongoose.connect("mongodb://localhost:27017/medDB", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false
-}); // connect to database
+mongoose.connect("mongodb://localhost:27017/medDB"); // connect to database
 
 const db = mongoose.connection; // get default connection
 
