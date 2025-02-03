@@ -3,10 +3,6 @@ import {mongoose} from 'mongoose';
 const Schema = mongoose.Schema;
 
 const doctorSchema = new Schema({
-    // id: { // id is not required because it is automatically generated
-    //     type: String,
-    //     required: [true, "Doctor ID is required"]
-    // }, 
     name: {
         type: String,
         required: [true, "Doctor Name is required"]
