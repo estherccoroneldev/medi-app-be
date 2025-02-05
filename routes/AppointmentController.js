@@ -52,4 +52,18 @@ router.delete('/appointment/:id', async (req, res) => { // delete appointment
     }
 });
 
+router.put('/reschedule/:id', async (req, res) => { 
+    const {id} = req.params
+    const {date} = req.body
+    try {
+        let appointment = await AppointmentService.getAppointment(id);
+        appointment.date = date;
+        appointment = await AppointmentService.updateAppointment(id, {date});
+        res.send(appointment);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(error);
+    }
+})
+
 export default router;
