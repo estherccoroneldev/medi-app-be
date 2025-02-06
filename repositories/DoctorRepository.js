@@ -46,6 +46,19 @@ const hashPassword = async (password) => {
     return bcrypt.hash(password, 10);
 }
 
+// login
+const getDoctorByLogin = async (login) => {
+    try {
+        const doctor = await Doctor.findOne({ login });
+        if (!doctor) {
+            throw new Error('Doctor not found');
+        }
+        return doctor;
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
 
 const doctorRepository = {
     getAllDoctors,
@@ -54,6 +67,7 @@ const doctorRepository = {
     updateDoctor,
     deleteDoctor,
     hashPassword,
+    getDoctorByLogin,
 }
 
 export default doctorRepository;

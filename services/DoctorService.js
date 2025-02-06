@@ -24,6 +24,10 @@ const hashPassword = async (password) => {
     return doctorRepository.hashPassword(password);
 }
 
+const getDoctorByLogin = async (login) => {
+    return doctorRepository.getDoctorByLogin(login);
+}
+
 const doctorService = {
     getAllDoctors,
     getDoctorById,
@@ -31,6 +35,7 @@ const doctorService = {
     updateDoctor,
     deleteDoctor,
     hashPassword,
+    getDoctorByLogin
 }
 
 export default doctorService;
