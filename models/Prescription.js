@@ -24,6 +24,9 @@ const prescriptionSchema = new Schema({
     instructions: {
         type: String,
     },
+    file: {
+        type: String,
+    },
     createdAt: {
         type: Date,
         default: Date.now

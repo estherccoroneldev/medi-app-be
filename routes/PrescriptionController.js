@@ -1,7 +1,34 @@
 import express from 'express';
+import multer from 'multer';
 import PrescriptionService from '../services/PrescriptionService.js';
 
 let router = express.Router();
+
+const storage = multer.diskStorage({
+    destination: function (_req, _file, callback) {
+        callback(null, './prescriptions')
+    },
+    filename: function (_req, file, callback) {
+        callback(null, file.originalname)
+    }
+});
+
+const upload = multer({ storage: storage });
+
+router.post('/uploadPrescription/:id', upload.single('prescription'), async (req, res) => { // upload prescription
+    try {
+        const { id } = req.params;
+        const prescription = await PrescriptionService.getPrescriptionById(id);
+
+        const file = "./prescriptions/" + req.file.originalname;
+        prescription = await PrescriptionService.updatePrescription(id, { file });
+        
+        res.status(200).send(prescription);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+})
+
 
 router.get('/prescriptions', async (req, res) => { // get all prescriptions
     try {
