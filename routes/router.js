@@ -1,9 +1,11 @@
 import express from 'express';
+import jwt from 'jsonwebtoken';
 import appointmentController from './AppointmentController.js';
 import doctorController from './DoctorController.js';
 import patientController from './PatientController.js';
 import prescriptionController from './PrescriptionController.js';
 import verifyToken from '../middleware/verifyToken.js';
+import DoctorService from '../services/DoctorService.js';
 
 let router = express.Router();
 

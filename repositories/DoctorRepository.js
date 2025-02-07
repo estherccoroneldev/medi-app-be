@@ -49,7 +49,7 @@ const hashPassword = async (password) => {
 // login
 const getDoctorByLogin = async (login) => {
     try {
-        const doctor = await Doctor.findOne({ login });
+        const doctor = await Doctor.findOne({ login: login });
         if (!doctor) {
             throw new Error('Doctor not found');
         }
