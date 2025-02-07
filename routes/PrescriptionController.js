@@ -1,6 +1,7 @@
 import express from 'express';
 import multer from 'multer';
 import PrescriptionService from '../services/PrescriptionService.js';
+import path from 'path';
 
 let router = express.Router();
 
@@ -22,7 +23,7 @@ router.post('/uploadPrescription/:id', upload.single('prescription'), async (req
 
         const file = "./prescriptions/" + req.file.originalname;
         prescription = await PrescriptionService.updatePrescription(id, { file });
-        
+
         res.status(200).send(prescription);
     } catch (error) {
         res.status(500).send(error.message);
@@ -84,6 +85,17 @@ router.get('/generatePrescription/:id', async (req, res) => { // generate prescr
         const generatedPrescription = await PrescriptionService.generatePrescriptionFile(prescription);
         res.send(generatedPrescription);
     } catch (error) {
+        res.status(500).send(error.message);
+    }
+})
+
+router.get('/readPrescription/:id', async (req, res) => { // read prescription
+    try {
+        const prescription = await PrescriptionService.getPrescriptionById(req.params.id);
+        let filePath = path.resolve(process.cwd() + prescription.file);
+        res.status(200).sendFile(filePath);
+    } catch (error) {
+        console.error(error);
         res.status(500).send(error.message);
     }
 })
