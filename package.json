@@ -1,7 +1,7 @@
 {
   "name": "mediapp",
   "version": "1.0.0",
-  "description": "Mini projeto da Disciplina Programacao II",
+  "description": "Prática da Disciplina Programacao II",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
