@@ -1,11 +1,11 @@
 import express from "express";
 import jwt from "jsonwebtoken";
+import verifyToken from "../middleware/verifyToken.js";
+import DoctorService from "../services/DoctorService.js";
 import appointmentController from "./AppointmentController.js";
 import doctorController from "./DoctorController.js";
 import patientController from "./PatientController.js";
 import prescriptionController from "./PrescriptionController.js";
-import verifyToken from "../middleware/verifyToken.js";
-import DoctorService from "../services/DoctorService.js";
 
 let router = express.Router();
 
@@ -27,7 +27,7 @@ router.post("/login", async (req, res) => {
     }
 
     // const token = jwt.sign({ doctorId: doctor._id }, process.env.TOKEN_SECRET); // for production
-    const token = jwt.sign({ doctorId: doctor._id }, "your-secret-key", {
+    const token = jwt.sign({ doctorId: doctor._id }, "secret-key", {
       expiresIn: "1h",
     });
     res.status(200).json({ token });

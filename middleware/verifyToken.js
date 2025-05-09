@@ -6,7 +6,7 @@ export default function verifyToken(req, res, next) {
 
   try {
     // const verified = jwt.verify(token, process.env.TOKEN_SECRET); // for production
-    const verified = jwt.verify(token, "your-secret-key");
+    const verified = jwt.verify(token, "secret-key");
     req.doctorId = verified.doctorId;
     next();
   } catch (err) {

@@ -1,19 +1,19 @@
-import express from "express";
 import pkg from "body-parser";
-import router from "./routes/router.js";
 import cors from "cors";
+import express from "express";
+import router from "./routes/router.js";
 
 import db from "./database/database.js";
 
-const app = express(); // create express app
-const { json, urlencoded } = pkg; // get json and urlencoded middleware
+const app = express();
+const { json, urlencoded } = pkg;
 
-app.use(json()); // use json middleware
-app.use(urlencoded({ extended: true })); // use urlencoded middleware
-app.use(cors()); // use cors middleware
+app.use(json());
+app.use(urlencoded({ extended: true }));
+app.use(cors());
 
 app.listen(3000, () => {
-  console.log("Server is running on port 3000"); // log success message
+  console.log("Server is running on port 3000");
 });
 
-app.use("/", router); // use router middleware
+app.use("/", router);

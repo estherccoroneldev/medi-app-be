@@ -20,8 +20,6 @@ const saveAppointment = async (appointment) => {
   try {
     const newAppointment = new Appointment(appointment);
     return await newAppointment.save();
-
-    // return await Appointment.create({date, doctorId, patientId}); // alternative
   } catch (error) {
     throw new Error(error);
   }
